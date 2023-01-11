@@ -29,6 +29,16 @@ jobs:
       uses: shogo82148/actions-setup-mysql@v1
       with:
         mysql-version: '8.0'
+        
+    - name: install WP cli
+      run: |
+        cd /opt
+        curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+        php wp-cli.phar --info
+        chmod +x wp-cli.phar
+        sudo mv wp-cli.phar /usr/local/bin/wp
+        wp core version
+        wp core version --allow-root
 
     - name: Install dependencies
       run: |
