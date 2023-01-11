@@ -25,6 +25,12 @@ jobs:
         key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
         restore-keys: |
           ${{ runner.os }}-php-
+    - name: Set up MySQL
+      uses: mirromutth/mysql-action@v1.1
+      with:
+        mysql root password: 'root' # Required if "mysql user" is empty, default is empty. The root superuser password
+        mysql user: 'root' # Required if "mysql root password" is empty, default is empty. The superuser for the specified database. Can use secrets, too
+        mysql password: 'root'
 
     - name: Install dependencies
       run: |
